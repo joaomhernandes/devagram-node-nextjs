@@ -8,15 +8,13 @@ export const validarTokenJWT =
     try {
       const { MINHA_CHAVE_JWT } = process.env;
       if (!MINHA_CHAVE_JWT) {
-        return res
-          .status(500)
-          .json({ erro: "ENV chave JWT nao inforada na execucao do projeto" });
+        return res.status(500).json({ erro: "ENV chave JWT não informada" });
       }
 
       if (!req || !req.headers) {
         return res
           .status(401)
-          .json({ erro: "Nao foi possivel validar o token de acesso" });
+          .json({ erro: "Não foi possivel validar o token de acesso" });
       }
 
       if (req.method !== "OPTIONS") {
@@ -24,21 +22,21 @@ export const validarTokenJWT =
         if (!authorization) {
           return res
             .status(401)
-            .json({ erro: "Nao foi possivel validar o token de acesso" });
+            .json({ erro: "Não foi possivel validar o token de acesso" });
         }
 
         const token = authorization.substring(7);
         if (!token) {
           return res
             .status(401)
-            .json({ erro: "Nao foi possivel validar o token de acesso" });
+            .json({ erro: "Não foi possivel validar o token de acesso" });
         }
 
         const decoded = jwt.verify(token, MINHA_CHAVE_JWT) as JwtPayload;
         if (!decoded) {
           return res
             .status(401)
-            .json({ erro: "Nao foi possivel validar o token de acesso" });
+            .json({ erro: "Não foi possivel validar o token de acesso" });
         }
 
         if (!req.query) {
@@ -51,7 +49,7 @@ export const validarTokenJWT =
       console.log(e);
       return res
         .status(401)
-        .json({ erro: "Nao foi possivel validar o token de acesso" });
+        .json({ erro: "Não foi possivel validar o token de acesso" });
     }
 
     return handler(req, res);
