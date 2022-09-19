@@ -6,7 +6,6 @@ import { conectarMongoDB } from "../../middlewares/conectarMongoDB";
 import { validarTokenJWT } from "../../middlewares/validarTokenJWT";
 import { PublicacaoModel } from "../../models/PublicacaoModel";
 import { UsuarioModel } from "../../models/UsuarioModel";
-import { imageConfigDefault } from "next/dist/shared/lib/image-config";
 
 const handler = nc()
   .use(upload.single("file"))
